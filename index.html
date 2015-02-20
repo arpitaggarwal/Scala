@@ -36,8 +36,18 @@
 
 <ul>
 <li>
-<strong>Class Any is the root of the Scala class hierarchy</strong>. Every class in a Scala execution environment inherits directly or indirectly from this class.</li>
-<li>Starting with Scala 2.10 it is possible to directly extend Any using universal traits. A universal trait is a trait that extends Any, only has defs as members, and does no initialization.</li>
+<strong>Class Any is the root of the Scala class hierarchy</strong>. Every class in a Scala execution environment inherits directly or 
+indirectly from this class.</li>
+<li>Starting with Scala 2.10 it is possible to directly extend Any using universal traits. A universal trait is a trait that 
+extends Any, only has defs as members, and does no initialization.</li>
+<li>The superclass of all classes scala. <strong>Any has two direct subclasses scala.AnyVal and scala.AnyRef</strong> representing two 
+different class worlds: value classes and reference classes.</li>
+<li>All value classes are predefined; they correspond to the primitive types of Java-like languages. </li>
+<li>All other classes define reference types. User-defined classes define reference types by default; i.e. they always<br>
+(indirectly) subclass scala.AnyRef. </li>
+<li>Every user-defined class in Scala implicitly extends the trait scala.ScalaObject. Classes from the infrastructure on 
+which Scala is running (e.g. the Java runtime environment) do not extend scala.ScalaObject. If Scala is used in the 
+context of a Java runtime environment, then scala.AnyRef corresponds to java.lang.Object.</li>
 </ul>
       </section>
     </div>
