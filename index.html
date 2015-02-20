@@ -40,8 +40,8 @@
 indirectly from this class.</li>
 <li>Starting with Scala 2.10 it is possible to directly extend Any using universal traits. A universal trait is a trait that 
 extends Any, only has defs as members, and does no initialization.</li>
-<li>The superclass of all classes scala. <strong>Any has two direct subclasses scala.AnyVal and scala.AnyRef</strong> representing two 
-different class worlds: value classes and reference classes.</li>
+<li>The superclass of all classes <strong>scala.Any has two direct subclasses scala.AnyVal and scala.AnyRef</strong> representing two 
+different class worlds: <strong>value classes and reference classes</strong>.</li>
 <li>All value classes are predefined; they correspond to the primitive types of Java-like languages. </li>
 <li>All other classes define reference types. User-defined classes define reference types by default; i.e. they always<br>
 (indirectly) subclass scala.AnyRef. </li>
@@ -49,6 +49,35 @@ different class worlds: value classes and reference classes.</li>
 which Scala is running (e.g. the Java runtime environment) do not extend scala.ScalaObject. If Scala is used in the 
 context of a Java runtime environment, then scala.AnyRef corresponds to java.lang.Object.</li>
 </ul>
+
+<h2>
+<a id="scalaanyval" class="anchor" href="#scalaanyval" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scala.AnyVal</h2>
+
+<ul>
+<li>AnyVal is the root class of all value types, which describe values not implemented as objects in the underlying host system.</li>
+<li>The standard implementation includes nine AnyVal subtypes:
+ scala.Double, scala.Float, scala.Long, scala.Int, scala.Char, scala.Short, and scala.Byte are the numeric value types.
+ scala.Unit and scala.Boolean are the non-numeric value types.</li>
+<li>Prior to Scala 2.10, AnyVal was a sealed trait. Beginning with Scala 2.10, however, it is possible to define a subclass 
+of AnyVal called a user-defined value class which is treated specially by the compiler. Properly-defined user value 
+classes provide a way to improve performance on user-defined types by avoiding object allocation at runtime, and by 
+replacing virtual method invocations with static method invocations.</li>
+</ul>
+
+<p>User-defined value classes which avoid object allocation.</p>
+
+<ul>
+<li>must have a single val parameter that is the underlying runtime representation.</li>
+<li>can define defs, but no vals, vars, or nested traitss, classes or objects.</li>
+<li>typically extend no other trait apart from AnyVal.</li>
+<li>cannot be used in type tests or pattern matching.</li>
+<li>may not override equals or hashCode methods.
+A minimal example:</li>
+</ul>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">class</span> <span class="pl-en">Wrapper</span>(<span class="pl-k">val</span> <span class="pl-en">underlying</span><span class="pl-k">:</span> <span class="pl-st">Int</span>) <span class="pl-k">extends</span> <span class="pl-e">AnyVal</span> {
+  <span class="pl-k">def</span> <span class="pl-en">foo</span><span class="pl-k">:</span> <span class="pl-en">Wrapper</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Wrapper</span>(underlying <span class="pl-k">*</span> <span class="pl-c1">19</span>)
+}</pre></div>
       </section>
     </div>
 
