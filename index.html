@@ -91,6 +91,38 @@ A minimal example:</li>
 }</pre></div>
 
 <p>Here, object Main inherits the main method of App. args returns the current command line arguments as an array.</p>
+
+<h2>
+<a id="traits" class="anchor" href="#traits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Traits</h2>
+
+<ul>
+<li>A trait encapsulates method and field definitions, which can then be reused by mixing them into classes. Unlike class 
+inheritance, in which each class must inherit from just one superclass, a class can mix in any number of traits.</li>
+<li>Traits are used to define object types by specifying the signature of the supported methods. Scala also allows traits to<br>
+be partially implemented but traits may not have constructor parameters.</li>
+<li>Child classes extending a trait can give implementation for the un-implemented methods. So a trait is very similar to 
+what we have abstract classes in Java.</li>
+<li>A trait definition looks just like a class definition except that it uses the keyword trait as follows:</li>
+</ul>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">trait</span> <span class="pl-en">Equal</span> {
+  <span class="pl-k">def</span> <span class="pl-en">isEqual</span>(<span class="pl-v">x</span>: <span class="pl-en">Any</span>)<span class="pl-k">:</span> <span class="pl-st">Boolean</span>
+  <span class="pl-k">def</span> <span class="pl-en">isNotEqual</span>(<span class="pl-v">x</span>: <span class="pl-en">Any</span>)<span class="pl-k">:</span> <span class="pl-st">Boolean</span> <span class="pl-k">=</span> <span class="pl-k">!</span>isEqual(x)
+}</pre></div>
+
+<h3>
+<a id="when-to-use-traits" class="anchor" href="#when-to-use-traits" aria-hidden="true"><span class="octicon octicon-link"></span></a>When to use traits?</h3>
+
+<ul>
+<li>There is no firm rule, but here are few guidelines to consider:</li>
+<li>If the behavior will not be reused, then make it a concrete class. It is not reusable behavior after all.</li>
+<li>If it might be reused in multiple, unrelated classes, make it a trait. Only traits can be mixed into different parts of the 
+class hierarchy.</li>
+<li>If you want to inherit from it in Java code, use an abstract class.</li>
+<li>If you plan to distribute it in compiled form, and you expect outside groups to write classes inheriting from it, you might<br>
+lean towards using an abstract class.</li>
+<li>If efficiency is very important, lean towards using a class.</li>
+</ul>
       </section>
     </div>
 
