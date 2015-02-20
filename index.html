@@ -123,6 +123,36 @@ class hierarchy.</li>
 lean towards using an abstract class.</li>
 <li>If efficiency is very important, lean towards using a class.</li>
 </ul>
+
+<h3>
+<a id="advantages-of-traits-over-abstract-classes" class="anchor" href="#advantages-of-traits-over-abstract-classes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advantages of traits over Abstract classes?</h3>
+
+<ul>
+<li>We can use multiple traits -- they are "stackable". Also, traits cannot have constructor parameters. They will call each other from right to left. </li>
+<li>Traits is that you can extend multiple traits but only one abstract class. Traits solve many of the problems with multiple inheritance but allow code reuse.</li>
+</ul>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">class</span> <span class="pl-en">Ball</span> {
+  <span class="pl-k">def</span> <span class="pl-en">properties</span>()<span class="pl-k">:</span> <span class="pl-en">List</span>[<span class="pl-st">String</span>] <span class="pl-k">=</span> <span class="pl-en">List</span>()
+  <span class="pl-s">override</span> <span class="pl-k">def</span> <span class="pl-en">toString</span>() <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>It's a<span class="pl-pds">"</span></span> <span class="pl-k">+</span>
+    properties.mkString(<span class="pl-s1"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>, <span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>) <span class="pl-k">+</span>
+    <span class="pl-s1"><span class="pl-pds">"</span>ball<span class="pl-pds">"</span></span>
+}
+
+<span class="pl-k">trait</span> <span class="pl-en">Red</span> <span class="pl-k">extends</span> <span class="pl-e">Ball</span> {
+  <span class="pl-s">override</span> <span class="pl-k">def</span> <span class="pl-en">properties</span>() <span class="pl-k">=</span> <span class="pl-v">super</span>.properties <span class="pl-k">:::</span> <span class="pl-en">List</span>(<span class="pl-s1"><span class="pl-pds">"</span>red<span class="pl-pds">"</span></span>)
+}
+
+<span class="pl-k">trait</span> <span class="pl-en">Shiny</span> <span class="pl-k">extends</span> <span class="pl-e">Ball</span> {
+  <span class="pl-s">override</span> <span class="pl-k">def</span> <span class="pl-en">properties</span>() <span class="pl-k">=</span> <span class="pl-v">super</span>.properties <span class="pl-k">:::</span> <span class="pl-en">List</span>(<span class="pl-s1"><span class="pl-pds">"</span>shiny<span class="pl-pds">"</span></span>)
+}
+
+<span class="pl-k">object</span> <span class="pl-en">Balls</span> {
+  <span class="pl-k">def</span> <span class="pl-en">main</span>(<span class="pl-v">args</span>: <span class="pl-en">Array</span>[<span class="pl-st">String</span>]) {
+    <span class="pl-k">val</span> <span class="pl-en">myBall</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Ball</span> <span class="pl-k">with</span> <span class="pl-e">Shiny</span> <span class="pl-k">with</span> <span class="pl-e">Red</span>
+    println(myBall) <span class="pl-c">// It's a shiny, red ball</span>
+  }
+}</pre></div>
       </section>
     </div>
 
