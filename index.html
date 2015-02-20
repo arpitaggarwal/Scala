@@ -78,6 +78,19 @@ A minimal example:</li>
 <div class="highlight highlight-scala"><pre><span class="pl-k">class</span> <span class="pl-en">Wrapper</span>(<span class="pl-k">val</span> <span class="pl-en">underlying</span><span class="pl-k">:</span> <span class="pl-st">Int</span>) <span class="pl-k">extends</span> <span class="pl-e">AnyVal</span> {
   <span class="pl-k">def</span> <span class="pl-en">foo</span><span class="pl-k">:</span> <span class="pl-en">Wrapper</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Wrapper</span>(underlying <span class="pl-k">*</span> <span class="pl-c1">19</span>)
 }</pre></div>
+
+<h2>
+<a id="scalaapp" class="anchor" href="#scalaapp" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scala.App</h2>
+
+<ul>
+<li>The App trait can be used to quickly turn objects into executable programs. Here is an example:</li>
+</ul>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">object</span> <span class="pl-en">Main</span> <span class="pl-k">extends</span> <span class="pl-e">App</span> {
+  <span class="pl-en">Console</span>.println(<span class="pl-s1"><span class="pl-pds">"</span>Hello World: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> (args mkString <span class="pl-s1"><span class="pl-pds">"</span>, <span class="pl-pds">"</span></span>))
+}</pre></div>
+
+<p>Here, object Main inherits the main method of App. args returns the current command line arguments as an array.</p>
       </section>
     </div>
 
