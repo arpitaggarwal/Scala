@@ -43,9 +43,9 @@ extends Any, only has defs as members, and does no initialization.</li>
 <li>The superclass of all classes <strong>scala.Any has two direct subclasses scala.AnyVal and scala.AnyRef</strong> representing two 
 different class worlds: <strong>value classes and reference classes</strong>.</li>
 <li>All value classes are predefined; they correspond to the primitive types of Java-like languages. </li>
-<li>All other classes define reference types. User-defined classes define reference types by default; i.e. they always<br>
-(indirectly) subclass scala.AnyRef. </li>
-<li>Every user-defined class in Scala implicitly extends the trait scala.ScalaObject. Classes from the infrastructure on 
+<li>All other classes define reference types. User-defined classes define reference types by default; i.e. they always (indirectly) subclass scala.AnyRef. </li>
+<li>
+<strong>Every user-defined class in Scala implicitly extends the trait scala.ScalaObject.</strong> Classes from the infrastructure on 
 which Scala is running (e.g. the Java runtime environment) do not extend scala.ScalaObject. If Scala is used in the 
 context of a Java runtime environment, then scala.AnyRef corresponds to java.lang.Object.</li>
 </ul>
