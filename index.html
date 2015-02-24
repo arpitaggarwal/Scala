@@ -172,6 +172,41 @@ lean towards using an abstract class.</li>
 <p>The class defines two variables x and y and two methods: move and toString. move takes two integer arguments but does not return a value (the implicit return type Unit corresponds to void in Java-like languages). toString, on the other hand, does not take any parameters but returns a String value. Since toString overrides the pre-defined toString method, it has to be tagged with the override flag.</p>
 
 <p>Classes in Scala are parameterized with constructor arguments. The code above defines two constructor arguments, xc and yc; they are both visible in the whole body of the class. In our example they are used to initialize the variables x and y.</p>
+
+<h2>
+<a id="case-classes" class="anchor" href="#case-classes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Case Classes</h2>
+
+<p>Scala supports the notion of case classes. Case classes are regular classes which export their constructor parameters and which provide a recursive decomposition mechanism via pattern matching. To facilitate the construction of case class instances, Scala does not require that the new primitive is used. The constructor parameters of case classes are treated as public values and can be accessed directly. For every case class the Scala compiler generates an equals method which implements structural equality and a toString method.</p>
+
+<p>Here is an example for a class hierarchy which consists of an abstract super class Term and three concrete case classes Var, Fun, and App.</p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-s">abstract</span> <span class="pl-k">class</span> <span class="pl-en">Term</span>
+<span class="pl-k">case</span> <span class="pl-k">class</span> <span class="pl-en">Var</span>(<span class="pl-v">name</span>: <span class="pl-st">String</span>) <span class="pl-k">extends</span> <span class="pl-e">Term</span>
+<span class="pl-k">case</span> <span class="pl-k">class</span> <span class="pl-en">Fun</span>(<span class="pl-v">arg</span>: <span class="pl-st">String</span>, <span class="pl-v">body</span>: <span class="pl-en">Term</span>) <span class="pl-k">extends</span> <span class="pl-e">Term</span>
+<span class="pl-k">case</span> <span class="pl-k">class</span> <span class="pl-en">App</span>(<span class="pl-v">f</span>: <span class="pl-en">Term</span>, <span class="pl-v">v</span>: <span class="pl-en">Term</span>) <span class="pl-k">extends</span> <span class="pl-e">Term</span></pre></div>
+
+<h3>
+<a id="case-class-advantages" class="anchor" href="#case-class-advantages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Case class advantages?</h3>
+
+<ul>
+<li>Everything immutable by default</li>
+<li>Getters automatically defined</li>
+<li>Decent toString() implementation</li>
+<li>Compliant equals() and hashCode()</li>
+<li>Companion object with unapply() method for matching</li>
+<li>Compliant serialization/deserialization</li>
+<li>No need to use "new" keyword to create.</li>
+</ul>
+
+<h3>
+<a id="when-to-use-case-class" class="anchor" href="#when-to-use-case-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>When to use case class?</h3>
+
+<p>A case class provides, equals, hashCode and toString methods based on the main constructor parameters, all of which are turned into val too. In addition, the object companion gets an apply and an unapply methods, again based on the main constructor parameters. Also, a case class inherits from Serializable and from Product, and should not be extended by other classes. If all of these things are appropriate for your class, then feel free to declare it as a 'case class'.</p>
+
+<h3>
+<a id="when-not-to-use-case-class" class="anchor" href="#when-not-to-use-case-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>When not to use case class?</h3>
+
+<p>Objects with mutable state, private state, or no state (e.g. most singleton components). </p>
       </section>
     </div>
 
