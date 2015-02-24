@@ -153,6 +153,25 @@ lean towards using an abstract class.</li>
     println(myBall) <span class="pl-c">// It's a shiny, red ball</span>
   }
 }</pre></div>
+
+<h2>
+<a id="classes" class="anchor" href="#classes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Classes</h2>
+
+<p>Classes in Scala are static templates that can be instantiated into many objects at runtime. Here is a class definition which defines a class Point:</p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">class</span> <span class="pl-en">Point</span>(<span class="pl-v">xc</span>: <span class="pl-st">Int</span>, <span class="pl-v">yc</span>: <span class="pl-st">Int</span>) {
+  <span class="pl-k">var</span> <span class="pl-en">x</span><span class="pl-k">:</span> <span class="pl-st">Int</span> <span class="pl-k">=</span> xc
+  <span class="pl-k">var</span> <span class="pl-en">y</span><span class="pl-k">:</span> <span class="pl-st">Int</span> <span class="pl-k">=</span> yc
+  <span class="pl-k">def</span> <span class="pl-en">move</span>(<span class="pl-v">dx</span>: <span class="pl-st">Int</span>, <span class="pl-v">dy</span>: <span class="pl-st">Int</span>) {
+    x <span class="pl-k">=</span> x <span class="pl-k">+</span> dx
+    y <span class="pl-k">=</span> y <span class="pl-k">+</span> dy
+  }
+  <span class="pl-s">override</span> <span class="pl-k">def</span> <span class="pl-en">toString</span>()<span class="pl-k">:</span> <span class="pl-st">String</span> <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>(<span class="pl-pds">"</span></span> <span class="pl-k">+</span> x <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>, <span class="pl-pds">"</span></span> <span class="pl-k">+</span> y <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>)<span class="pl-pds">"</span></span>;
+}</pre></div>
+
+<p>The class defines two variables x and y and two methods: move and toString. move takes two integer arguments but does not return a value (the implicit return type Unit corresponds to void in Java-like languages). toString, on the other hand, does not take any parameters but returns a String value. Since toString overrides the pre-defined toString method, it has to be tagged with the override flag.</p>
+
+<p>Classes in Scala are parameterized with constructor arguments. The code above defines two constructor arguments, xc and yc; they are both visible in the whole body of the class. In our example they are used to initialize the variables x and y.</p>
       </section>
     </div>
 
