@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Scala-Collections : Scala Collections">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Scala-Collections</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+   
+
+          <h1 id="project_title">Scala-Collections</h1>
+          <h2 id="project_tagline">Scala Collections</h2>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a id="scalacollectionseq" class="anchor" href="#scalacollectionseq" aria-hidden="true"><span class="octicon octicon-link"></span></a>scala.collection.Seq</h2>
+
+<p>Seq is a base trait for sequences.
+Sequences are special cases of iterable collections of class Iterable. Unlike iterables, sequences always have a defined order of elements. Sequences provide a method apply for indexing.
+Sequences can be accessed in reverse order of their elements, using methods reverse and reverseIterator.</p>
+
+<p>Sequences have two principal subtraits, <strong>IndexedSeq and LinearSeq</strong>, which give different guarantees for performance. An IndexedSeq provides fast random-access of elements and a fast length operation. A LinearSeq provides fast access only to the first element via head, but also has a fast tail operation.</p>
+
+<p>IndexedSeq further divided into immutable.IndexedSeq and mutable.IndexedSeq similarly LinearSeq as immutable.LinearSeq and mutable.LinearSeq.</p>
+
+<p><strong>Classes extending immutable.IndexedSeq are:</strong></p>
+
+<ol>
+<li>Impl(Class)</li>
+<li>NumericRange (Class)</li>
+<li>Range (Class)</li>
+<li>Vector - (Final Class)</li>
+<li>WrappedString (Class)</li>
+</ol>
+
+<p><strong>Classes and traits extending mutable.IndexedSeq are:</strong></p>
+
+<ol>
+<li>ArraySeq (Class)</li>
+<li>IndexedSeqView (Trait)</li>
+<li>ResizableArray (Trait)</li>
+<li>StringBuilder (Class)</li>
+<li>WrappedArray (Class)</li>
+</ol>
+
+<p><strong>Classes extending immutable.LinearSeq are:</strong></p>
+
+<ol>
+<li>List(Class)</li>
+<li>Queue (Class)</li>
+<li>Stack (Class)</li>
+<li>Stream - (Class)</li>
+</ol>
+
+<p><strong>Classes extending mutable.LinearSeq are:</strong></p>
+
+<ol>
+<li>DoubleLinkedList(Class)</li>
+<li>LinkedList(Class)</li>
+<li>MutableList(Class)</li>
+</ol>
+
+<h2>
+<a id="basic-collections-in-scala" class="anchor" href="#basic-collections-in-scala" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Collections in Scala?</h2>
+
+<ol>
+<li>Lists</li>
+<li>Sets</li>
+<li>Tuple</li>
+<li>Maps</li>
+<li>Option</li>
+<li>Vector</li>
+</ol>
+
+<h2>
+<a id="collections-functions" class="anchor" href="#collections-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Collections Functions</h2>
+
+<ol>
+<li>map</li>
+<li>foreach</li>
+<li>filter</li>
+<li>zip</li>
+<li>foldRight and foldLeft</li>
+<li>partition</li>
+<li>drop and dropWhile</li>
+<li>find</li>
+<li>flatten</li>
+<li>flatMap </li>
+</ol>
+
+<p><strong>Lists?</strong></p>
+
+<ul>
+<li>A class for immutable linked lists representing ordered collections of elements of type.</li>
+<li>This class comes with two <strong>implementing case classes scala.Nil and scala.::</strong> that implement the abstract members 
+isEmpty, head and tail.</li>
+<li>This class is optimal for last-in-first-out (LIFO), stack-like access patterns. </li>
+</ul>
+
+<p><strong>Sets?</strong></p>
+
+<ul>
+<li>A base trait for all sets, mutable as well as immutable. By default Immutable. Need to import scala.collection.mutable<br>
+for Mutable Set.</li>
+<li>A set is a collection that contains no duplicate elements.</li>
+</ul>
+
+<p><strong>Tuple?</strong></p>
+
+<ul>
+<li>Scala tuple combines a fixed number of items together so that they can be passed around as a whole. Unlike an array or 
+list, a tuple can hold objects with different types but they are also immutable.</li>
+<li>The actual type of a tuple depends upon the number and of elements it contains and the types of those elements. Thus, the<br>
+type of (99, "Luftballons") is Tuple2[Int, String]. The type of ('u', 'r', "the", 1, 4, "me") is Tuple6[Char, Char, 
+String, Int, Int, String]</li>
+<li>Tuples are of type Tuple1, Tuple2, Tuple3 and so on. There currently is an upper limit of 22 in the Scala if you need 
+more, then you can use a collection, not a tuple.</li>
+</ul>
+
+<p><strong>Maps?</strong></p>
+
+<ul>
+<li>A map from keys of type A to values of type B. This trait provides most of the operations of a Map independently of its 
+representation.</li>
+<li>A map function accepts a higher-order function and a collection, then applies the passed function to each element and 
+returns a collection. The returned collection (unlike with filtering) is the same size as the original collection, but<br>
+with updated values.</li>
+</ul>
+
+<p><strong>Option?</strong></p>
+
+<ul>
+<li>Scala Option[T] is a container for zero or one element of a given type. An Option[T] can be either Some[T] or None 
+object, which represents a missing value. </li>
+<li>For instance, the get method of Scala's Map produces Some(value) if a value corresponding to a given key has been found, 
+or None if the given key is not defined in the Map. The Option type is used frequently in Scala programs and you can 
+compare this to null value available in Java which indicate no value. For example, the get method of java.util.HashMap 
+returns either a value stored in the HashMap, or null if no value was found.</li>
+</ul>
+
+<p><strong>Vector?</strong></p>
+
+<ul>
+<li>Vector is a general-purpose, immutable data structure. It provides random access and updates in effectively constant 
+time, as well as very fast append and prepend. </li>
+<li>Because vectors strike a good balance between fast random selections and fast random functional updates, <strong>they are
+currently the default implementation of immutable indexed sequences.</strong>
+</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Scala-Collections maintained by <a href="https://github.com/arpitaggarwal">arpitaggarwal</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
