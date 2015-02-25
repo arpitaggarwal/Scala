@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Programming-In-Scala : Programming In Scala">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Programming-In-Scala</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+
+          <h1 id="project_title">Programming-In-Scala</h1>
+          <h2 id="project_tagline">Programming In Scala</h2>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a id="problem-1---find-pi-to-the-nth-digit---enter-a-number-and-have-the-program-generate-pi-up-to-that-many-decimal-places-keep-a-limit-to-how-far-the-program-will-go" class="anchor" href="#problem-1---find-pi-to-the-nth-digit---enter-a-number-and-have-the-program-generate-pi-up-to-that-many-decimal-places-keep-a-limit-to-how-far-the-program-will-go" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problem 1 - Find PI to the Nth Digit - Enter a number and have the program generate PI up to that many decimal places. Keep a limit to how far the program will go.</h3>
+
+<div class="highlight highlight-scala"><pre>
+<span class="pl-k">object</span> <span class="pl-en">CalculatePI</span> {
+  <span class="pl-k">def</span> <span class="pl-en">main</span>(<span class="pl-v">args</span>: <span class="pl-en">Array</span>[<span class="pl-st">String</span>]) {
+    <span class="pl-k">val</span> <span class="pl-en">iteration</span><span class="pl-k">:</span> <span class="pl-st">Int</span> <span class="pl-k">=</span> args(<span class="pl-c1">0</span>).toInt;
+    <span class="pl-k">var</span> <span class="pl-en">sum</span><span class="pl-k">:</span> <span class="pl-st">Double</span> <span class="pl-k">=</span> <span class="pl-c1">0.0</span>;
+    <span class="pl-k">var</span> <span class="pl-en">sign</span><span class="pl-k">:</span> <span class="pl-st">Int</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>;
+    <span class="pl-c1">0</span> to iteration foreach { x <span class="pl-k">=&gt;</span>
+      sum <span class="pl-k">=</span> sum.<span class="pl-k">+</span>(sign.toDouble <span class="pl-k">/</span> (<span class="pl-c1">2</span>.<span class="pl-k">*</span>(x).<span class="pl-k">+</span>(<span class="pl-c1">1</span>)))
+      sign <span class="pl-k">=</span> <span class="pl-k">-</span>sign;
+    }
+    println(sum.<span class="pl-k">*</span>(<span class="pl-c1">4.0</span>))
+  }
+}
+</pre></div>
+
+<h3>
+<a id="problem-2---find-e-to-the-nth-digit---just-like-the-previous-problem-but-with-e-instead-of-pi-enter-a-number-and-have-the-program-generate-e-up-to-that-many-decimal-places-keep-a-limit-to-how-far-the-program-will-go" class="anchor" href="#problem-2---find-e-to-the-nth-digit---just-like-the-previous-problem-but-with-e-instead-of-pi-enter-a-number-and-have-the-program-generate-e-up-to-that-many-decimal-places-keep-a-limit-to-how-far-the-program-will-go" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problem 2 - Find e to the Nth Digit - Just like the previous problem, but with e instead of PI. Enter a number and have the program generate e up to that many decimal places. Keep a limit to how far the program will go.</h3>
+
+<div class="highlight highlight-scala"><pre>
+<span class="pl-k">object</span> <span class="pl-en">CalculateExponential</span> {
+
+  <span class="pl-k">def</span> <span class="pl-en">main</span>(<span class="pl-v">args</span>: <span class="pl-en">Array</span>[<span class="pl-st">String</span>]) {
+    <span class="pl-k">val</span> <span class="pl-en">n</span> <span class="pl-k">:</span> <span class="pl-st">Int</span> <span class="pl-k">=</span> args(<span class="pl-c1">0</span>).toInt;
+    println(exponential(n, <span class="pl-c1">1.0f</span>))
+  }
+
+  <span class="pl-k">def</span> <span class="pl-en">exponential</span>(<span class="pl-v">n</span>: <span class="pl-st">Int</span>, <span class="pl-v">x</span>: <span class="pl-st">Float</span>)<span class="pl-k">:</span> <span class="pl-st">Float</span> <span class="pl-k">=</span> {
+    <span class="pl-k">var</span> <span class="pl-en">sum</span><span class="pl-k">:</span> <span class="pl-st">Float</span> <span class="pl-k">=</span> <span class="pl-c1">1.0f</span>;
+    n <span class="pl-k">-</span> <span class="pl-c1">1</span> to <span class="pl-c1">1</span> by <span class="pl-k">-</span><span class="pl-c1">1</span> foreach { z <span class="pl-k">=&gt;</span>
+      sum <span class="pl-k">=</span> <span class="pl-c1">1</span>.<span class="pl-k">+</span>(x.<span class="pl-k">*</span>(sum.<span class="pl-k">/</span>(z)))
+    }
+    sum;
+  }
+}
+</pre></div>
+
+<h3>
+<a id="problem-3---fibonacci-sequence---enter-a-number-and-have-the-program-generate-the-fibonacci-sequence-to-that-number-or-to-the-nth-number" class="anchor" href="#problem-3---fibonacci-sequence---enter-a-number-and-have-the-program-generate-the-fibonacci-sequence-to-that-number-or-to-the-nth-number" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problem 3 - Fibonacci Sequence - Enter a number and have the program generate the Fibonacci sequence to that number or to the Nth number.</h3>
+
+<div class="highlight highlight-scala"><pre>
+<span class="pl-k">object</span> <span class="pl-en">CalculateFibonacci</span> {
+  <span class="pl-k">def</span> <span class="pl-en">main</span>(<span class="pl-v">args</span>: <span class="pl-en">Array</span>[<span class="pl-st">String</span>]) {
+    <span class="pl-k">val</span> <span class="pl-en">n</span><span class="pl-k">:</span> <span class="pl-st">Int</span> <span class="pl-k">=</span> args(<span class="pl-c1">0</span>).toInt;
+    <span class="pl-c1">0</span> to n foreach { x <span class="pl-k">=&gt;</span>
+      print(fibonacci(x) <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>)
+    }
+  }
+
+  <span class="pl-k">def</span> <span class="pl-en">fibonacci</span>(<span class="pl-v">x</span>: <span class="pl-st">Int</span>)<span class="pl-k">:</span> <span class="pl-st">Int</span> <span class="pl-k">=</span> {
+    <span class="pl-k">if</span> ((x <span class="pl-k">==</span> <span class="pl-c1">0</span>) <span class="pl-k">||</span> (x <span class="pl-k">==</span> <span class="pl-c1">1</span>))
+      x;
+    <span class="pl-k">else</span>
+      fibonacci(x <span class="pl-k">-</span> <span class="pl-c1">1</span>) <span class="pl-k">+</span> fibonacci(x <span class="pl-k">-</span> <span class="pl-c1">2</span>);
+  }
+}
+</pre></div>
+
+<h3>
+<a id="problem-4---prime-factorization---have-the-user-enter-a-number-and-find-all-prime-factors-if-there-are-any-and-display-them" class="anchor" href="#problem-4---prime-factorization---have-the-user-enter-a-number-and-find-all-prime-factors-if-there-are-any-and-display-them" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problem 4 - Prime Factorization - Have the user enter a number and find all Prime Factors (if there are any) and display them.</h3>
+
+<div class="highlight highlight-scala"><pre>
+<span class="pl-k">object</span> <span class="pl-en">CalculatePrimeFactors</span> {
+
+  <span class="pl-k">def</span> <span class="pl-en">main</span>(<span class="pl-v">args</span>: <span class="pl-en">Array</span>[<span class="pl-st">String</span>]) {
+    <span class="pl-k">val</span> <span class="pl-en">n</span><span class="pl-k">:</span> <span class="pl-st">Int</span> <span class="pl-k">=</span> args(<span class="pl-c1">0</span>).toInt;
+    print(<span class="pl-s1"><span class="pl-pds">"</span>Prime factors for <span class="pl-pds">"</span></span> <span class="pl-k">+</span> n <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span> are : <span class="pl-pds">"</span></span> <span class="pl-k">+</span> factors(n))
+  }
+
+  <span class="pl-k">def</span> <span class="pl-en">factors</span>(<span class="pl-v">number</span>: <span class="pl-st">Int</span>)<span class="pl-k">:</span> <span class="pl-en">Seq</span>[<span class="pl-st">Int</span>] <span class="pl-k">=</span> {
+    <span class="pl-k">var</span> <span class="pl-en">num</span> <span class="pl-k">=</span> number;
+    <span class="pl-k">var</span> <span class="pl-en">factors</span> <span class="pl-k">=</span> <span class="pl-en">Vector</span>[<span class="pl-st">Int</span>]();
+    <span class="pl-c1">2</span> to num foreach { x <span class="pl-k">=&gt;</span>
+      <span class="pl-k">if</span> (num <span class="pl-k">%</span> x <span class="pl-k">==</span> <span class="pl-c1">0</span>) {
+        factors <span class="pl-k">=</span> factors <span class="pl-k">:</span><span class="pl-k">+</span> x
+        num <span class="pl-k">=</span> num <span class="pl-k">/</span> x;
+        x.<span class="pl-k">-</span>(<span class="pl-c1">1</span>);
+      }
+    }
+    factors
+  }
+}
+</pre></div>
+
+<h3>
+<a id="problem-5---next-prime-number---have-the-user-enters-a-number-find-next-prime-number" class="anchor" href="#problem-5---next-prime-number---have-the-user-enters-a-number-find-next-prime-number" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problem 5 - Next Prime Number - Have the user enters a number find next prime number.</h3>
+
+<div class="highlight highlight-scala"><pre>
+<span class="pl-k">object</span> <span class="pl-en">CalculateNextPrime</span> {
+
+  <span class="pl-k">def</span> <span class="pl-en">main</span>(<span class="pl-v">args</span>: <span class="pl-en">Array</span>[<span class="pl-st">String</span>]) {
+    <span class="pl-k">val</span> <span class="pl-en">number</span><span class="pl-k">:</span> <span class="pl-st">Int</span> <span class="pl-k">=</span> args(<span class="pl-c1">0</span>).toInt;
+    println(<span class="pl-s1"><span class="pl-pds">"</span>Next Prime : <span class="pl-pds">"</span></span> <span class="pl-k">+</span> nextPrime(number))
+  }
+
+  <span class="pl-k">def</span> <span class="pl-en">nextPrime</span>(<span class="pl-v">number</span>: <span class="pl-st">Int</span>)<span class="pl-k">:</span> <span class="pl-st">Int</span> <span class="pl-k">=</span> {
+    <span class="pl-k">var</span> <span class="pl-en">num</span> <span class="pl-k">=</span> number.<span class="pl-k">+</span>(<span class="pl-c1">1</span>);
+    <span class="pl-k">if</span> (isPrime(num)) {
+       num;
+    } <span class="pl-k">else</span> {
+      num <span class="pl-k">=</span> nextPrime(num);
+    }
+    num;
+  }
+
+  <span class="pl-k">def</span> <span class="pl-en">isPrime</span>(<span class="pl-v">n</span>: <span class="pl-st">Int</span>)<span class="pl-k">:</span> <span class="pl-st">Boolean</span> <span class="pl-k">=</span> {
+    <span class="pl-c1">2</span> until n foreach { i <span class="pl-k">=&gt;</span>
+      <span class="pl-k">if</span> (n <span class="pl-k">%</span> i <span class="pl-k">==</span> <span class="pl-c1">0</span>) {
+        <span class="pl-k">return</span> <span class="pl-c1">false</span>;
+      }
+    }
+    <span class="pl-k">return</span> <span class="pl-c1">true</span>;
+  }
+}</pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Programming-In-Scala maintained by <a href="https://github.com/arpitaggarwal">arpitaggarwal</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
