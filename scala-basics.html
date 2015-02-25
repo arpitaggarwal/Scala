@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Scala : Scala">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Scala</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <h1 id="project_title">Scala</h1>
+          <h2 id="project_tagline">Scala</h2>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a id="scalaany" class="anchor" href="#scalaany" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scala.Any</h2>
+
+<ul>
+<li>
+<strong>Class Any is the root of the Scala class hierarchy</strong>. Every class in a Scala execution environment inherits directly or 
+indirectly from this class.</li>
+<li>Starting with Scala 2.10 it is possible to directly extend Any using universal traits. A universal trait is a trait that 
+extends Any, only has defs as members, and does no initialization.</li>
+<li>The superclass of all classes <strong>scala.Any has two direct subclasses scala.AnyVal and scala.AnyRef</strong> representing two 
+different class worlds: <strong>value classes and reference classes</strong>.</li>
+<li>All value classes are predefined; they correspond to the primitive types of Java-like languages. </li>
+<li>All other classes define reference types. User-defined classes define reference types by default; i.e. they always (indirectly) subclass scala.AnyRef. </li>
+<li>
+<strong>Every user-defined class in Scala implicitly extends the trait scala.ScalaObject.</strong> Classes from the infrastructure on 
+which Scala is running (e.g. the Java runtime environment) do not extend scala.ScalaObject. If Scala is used in the 
+context of a Java runtime environment, then scala.AnyRef corresponds to java.lang.Object.</li>
+</ul>
+
+<h2>
+<a id="scalaanyval" class="anchor" href="#scalaanyval" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scala.AnyVal</h2>
+
+<ul>
+<li>AnyVal is the root class of all value types, which describe values not implemented as objects in the underlying host system.</li>
+<li>The standard implementation includes nine AnyVal subtypes:
+ scala.Double, scala.Float, scala.Long, scala.Int, scala.Char, scala.Short, and scala.Byte are the numeric value types.
+ scala.Unit and scala.Boolean are the non-numeric value types.</li>
+<li>Prior to Scala 2.10, AnyVal was a sealed trait. Beginning with Scala 2.10, however, it is possible to define a subclass 
+of AnyVal called a user-defined value class which is treated specially by the compiler. Properly-defined user value 
+classes provide a way to improve performance on user-defined types by avoiding object allocation at runtime, and by 
+replacing virtual method invocations with static method invocations.</li>
+</ul>
+
+<p>User-defined value classes which avoid object allocation.</p>
+
+<ul>
+<li>must have a single val parameter that is the underlying runtime representation.</li>
+<li>can define defs, but no vals, vars, or nested traitss, classes or objects.</li>
+<li>typically extend no other trait apart from AnyVal.</li>
+<li>cannot be used in type tests or pattern matching.</li>
+<li>may not override equals or hashCode methods.
+A minimal example:</li>
+</ul>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">class</span> <span class="pl-en">Wrapper</span>(<span class="pl-k">val</span> <span class="pl-en">underlying</span><span class="pl-k">:</span> <span class="pl-st">Int</span>) <span class="pl-k">extends</span> <span class="pl-e">AnyVal</span> {
+  <span class="pl-k">def</span> <span class="pl-en">foo</span><span class="pl-k">:</span> <span class="pl-en">Wrapper</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Wrapper</span>(underlying <span class="pl-k">*</span> <span class="pl-c1">19</span>)
+}</pre></div>
+
+<h2>
+<a id="scalaapp" class="anchor" href="#scalaapp" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scala.App</h2>
+
+<ul>
+<li>The App trait can be used to quickly turn objects into executable programs. Here is an example:</li>
+</ul>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">object</span> <span class="pl-en">Main</span> <span class="pl-k">extends</span> <span class="pl-e">App</span> {
+  <span class="pl-en">Console</span>.println(<span class="pl-s1"><span class="pl-pds">"</span>Hello World: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> (args mkString <span class="pl-s1"><span class="pl-pds">"</span>, <span class="pl-pds">"</span></span>))
+}</pre></div>
+
+<p>Here, object Main inherits the main method of App. args returns the current command line arguments as an array.</p>
+
+<h2>
+<a id="traits" class="anchor" href="#traits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Traits</h2>
+
+<ul>
+<li>A trait encapsulates method and field definitions, which can then be reused by mixing them into classes. Unlike class 
+inheritance, in which each class must inherit from just one superclass, a class can mix in any number of traits.</li>
+<li>Traits are used to define object types by specifying the signature of the supported methods. Scala also allows traits to<br>
+be partially implemented but traits may not have constructor parameters.</li>
+<li>Child classes extending a trait can give implementation for the un-implemented methods. So a trait is very similar to 
+what we have abstract classes in Java.</li>
+<li>A trait definition looks just like a class definition except that it uses the keyword trait as follows:</li>
+</ul>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">trait</span> <span class="pl-en">Equal</span> {
+  <span class="pl-k">def</span> <span class="pl-en">isEqual</span>(<span class="pl-v">x</span>: <span class="pl-en">Any</span>)<span class="pl-k">:</span> <span class="pl-st">Boolean</span>
+  <span class="pl-k">def</span> <span class="pl-en">isNotEqual</span>(<span class="pl-v">x</span>: <span class="pl-en">Any</span>)<span class="pl-k">:</span> <span class="pl-st">Boolean</span> <span class="pl-k">=</span> <span class="pl-k">!</span>isEqual(x)
+}</pre></div>
+
+<h3>
+<a id="when-to-use-traits" class="anchor" href="#when-to-use-traits" aria-hidden="true"><span class="octicon octicon-link"></span></a>When to use traits?</h3>
+
+<ul>
+<li>There is no firm rule, but here are few guidelines to consider:</li>
+<li>If the behavior will not be reused, then make it a concrete class. It is not reusable behavior after all.</li>
+<li>If it might be reused in multiple, unrelated classes, make it a trait. Only traits can be mixed into different parts of the 
+class hierarchy.</li>
+<li>If you want to inherit from it in Java code, use an abstract class.</li>
+<li>If you plan to distribute it in compiled form, and you expect outside groups to write classes inheriting from it, you might<br>
+lean towards using an abstract class.</li>
+<li>If efficiency is very important, lean towards using a class.</li>
+</ul>
+
+<h3>
+<a id="advantages-of-traits-over-abstract-classes" class="anchor" href="#advantages-of-traits-over-abstract-classes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advantages of traits over Abstract classes?</h3>
+
+<ul>
+<li>We can use multiple traits -- they are "stackable". Also, traits cannot have constructor parameters. They will call each other from right to left. </li>
+<li>Traits is that you can extend multiple traits but only one abstract class. Traits solve many of the problems with multiple inheritance but allow code reuse.</li>
+</ul>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">class</span> <span class="pl-en">Ball</span> {
+  <span class="pl-k">def</span> <span class="pl-en">properties</span>()<span class="pl-k">:</span> <span class="pl-en">List</span>[<span class="pl-st">String</span>] <span class="pl-k">=</span> <span class="pl-en">List</span>()
+  <span class="pl-s">override</span> <span class="pl-k">def</span> <span class="pl-en">toString</span>() <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>It's a<span class="pl-pds">"</span></span> <span class="pl-k">+</span>
+    properties.mkString(<span class="pl-s1"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>, <span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span>) <span class="pl-k">+</span>
+    <span class="pl-s1"><span class="pl-pds">"</span>ball<span class="pl-pds">"</span></span>
+}
+
+<span class="pl-k">trait</span> <span class="pl-en">Red</span> <span class="pl-k">extends</span> <span class="pl-e">Ball</span> {
+  <span class="pl-s">override</span> <span class="pl-k">def</span> <span class="pl-en">properties</span>() <span class="pl-k">=</span> <span class="pl-v">super</span>.properties <span class="pl-k">:::</span> <span class="pl-en">List</span>(<span class="pl-s1"><span class="pl-pds">"</span>red<span class="pl-pds">"</span></span>)
+}
+
+<span class="pl-k">trait</span> <span class="pl-en">Shiny</span> <span class="pl-k">extends</span> <span class="pl-e">Ball</span> {
+  <span class="pl-s">override</span> <span class="pl-k">def</span> <span class="pl-en">properties</span>() <span class="pl-k">=</span> <span class="pl-v">super</span>.properties <span class="pl-k">:::</span> <span class="pl-en">List</span>(<span class="pl-s1"><span class="pl-pds">"</span>shiny<span class="pl-pds">"</span></span>)
+}
+
+<span class="pl-k">object</span> <span class="pl-en">Balls</span> {
+  <span class="pl-k">def</span> <span class="pl-en">main</span>(<span class="pl-v">args</span>: <span class="pl-en">Array</span>[<span class="pl-st">String</span>]) {
+    <span class="pl-k">val</span> <span class="pl-en">myBall</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Ball</span> <span class="pl-k">with</span> <span class="pl-e">Shiny</span> <span class="pl-k">with</span> <span class="pl-e">Red</span>
+    println(myBall) <span class="pl-c">// It's a shiny, red ball</span>
+  }
+}</pre></div>
+
+<h2>
+<a id="classes" class="anchor" href="#classes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Classes</h2>
+
+<p>Classes in Scala are static templates that can be instantiated into many objects at runtime. Here is a class definition which defines a class Point:</p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-k">class</span> <span class="pl-en">Point</span>(<span class="pl-v">xc</span>: <span class="pl-st">Int</span>, <span class="pl-v">yc</span>: <span class="pl-st">Int</span>) {
+  <span class="pl-k">var</span> <span class="pl-en">x</span><span class="pl-k">:</span> <span class="pl-st">Int</span> <span class="pl-k">=</span> xc
+  <span class="pl-k">var</span> <span class="pl-en">y</span><span class="pl-k">:</span> <span class="pl-st">Int</span> <span class="pl-k">=</span> yc
+  <span class="pl-k">def</span> <span class="pl-en">move</span>(<span class="pl-v">dx</span>: <span class="pl-st">Int</span>, <span class="pl-v">dy</span>: <span class="pl-st">Int</span>) {
+    x <span class="pl-k">=</span> x <span class="pl-k">+</span> dx
+    y <span class="pl-k">=</span> y <span class="pl-k">+</span> dy
+  }
+  <span class="pl-s">override</span> <span class="pl-k">def</span> <span class="pl-en">toString</span>()<span class="pl-k">:</span> <span class="pl-st">String</span> <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>(<span class="pl-pds">"</span></span> <span class="pl-k">+</span> x <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>, <span class="pl-pds">"</span></span> <span class="pl-k">+</span> y <span class="pl-k">+</span> <span class="pl-s1"><span class="pl-pds">"</span>)<span class="pl-pds">"</span></span>;
+}</pre></div>
+
+<p>The class defines two variables x and y and two methods: move and toString. move takes two integer arguments but does not return a value (the implicit return type Unit corresponds to void in Java-like languages). toString, on the other hand, does not take any parameters but returns a String value. Since toString overrides the pre-defined toString method, it has to be tagged with the override flag.</p>
+
+<p>Classes in Scala are parameterized with constructor arguments. The code above defines two constructor arguments, xc and yc; they are both visible in the whole body of the class. In our example they are used to initialize the variables x and y.</p>
+
+<h2>
+<a id="case-classes" class="anchor" href="#case-classes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Case Classes</h2>
+
+<p>Scala supports the notion of case classes. Case classes are regular classes which export their constructor parameters and which provide a recursive decomposition mechanism via pattern matching. To facilitate the construction of case class instances, Scala does not require that the new primitive is used. The constructor parameters of case classes are treated as public values and can be accessed directly. For every case class the Scala compiler generates an equals method which implements structural equality and a toString method.</p>
+
+<p>Here is an example for a class hierarchy which consists of an abstract super class Term and three concrete case classes Var, Fun, and App.</p>
+
+<div class="highlight highlight-scala"><pre><span class="pl-s">abstract</span> <span class="pl-k">class</span> <span class="pl-en">Term</span>
+<span class="pl-k">case</span> <span class="pl-k">class</span> <span class="pl-en">Var</span>(<span class="pl-v">name</span>: <span class="pl-st">String</span>) <span class="pl-k">extends</span> <span class="pl-e">Term</span>
+<span class="pl-k">case</span> <span class="pl-k">class</span> <span class="pl-en">Fun</span>(<span class="pl-v">arg</span>: <span class="pl-st">String</span>, <span class="pl-v">body</span>: <span class="pl-en">Term</span>) <span class="pl-k">extends</span> <span class="pl-e">Term</span>
+<span class="pl-k">case</span> <span class="pl-k">class</span> <span class="pl-en">App</span>(<span class="pl-v">f</span>: <span class="pl-en">Term</span>, <span class="pl-v">v</span>: <span class="pl-en">Term</span>) <span class="pl-k">extends</span> <span class="pl-e">Term</span></pre></div>
+
+<h3>
+<a id="case-class-advantages" class="anchor" href="#case-class-advantages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Case class advantages?</h3>
+
+<ul>
+<li>Everything immutable by default</li>
+<li>Getters automatically defined</li>
+<li>Decent toString() implementation</li>
+<li>Compliant equals() and hashCode()</li>
+<li>Companion object with unapply() method for matching</li>
+<li>Compliant serialization/deserialization</li>
+<li>No need to use "new" keyword to create.</li>
+</ul>
+
+<h3>
+<a id="when-to-use-case-class" class="anchor" href="#when-to-use-case-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>When to use case class?</h3>
+
+<p>A case class provides, equals, hashCode and toString methods based on the main constructor parameters, all of which are turned into val too. In addition, the object companion gets an apply and an unapply methods, again based on the main constructor parameters. Also, a case class inherits from Serializable and from Product, and should not be extended by other classes. If all of these things are appropriate for your class, then feel free to declare it as a 'case class'.</p>
+
+<h3>
+<a id="when-not-to-use-case-class" class="anchor" href="#when-not-to-use-case-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>When not to use case class?</h3>
+
+<p>Objects with mutable state, private state, or no state (e.g. most singleton components). </p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Scala maintained by <a href="https://github.com/arpitaggarwal">arpitaggarwal</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
