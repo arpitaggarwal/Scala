@@ -199,6 +199,29 @@ lean towards using an abstract class.</li>
 <a id="when-not-to-use-case-class" class="anchor" href="#when-not-to-use-case-class" aria-hidden="true"><span class="octicon octicon-link"></span></a>When not to use case class?</h3>
 
 <p>Objects with mutable state, private state, or no state (e.g. most singleton components). </p>
+      
+        
+        
+        <h1 id="null-and-null">Null and null</h1>
+<p>Null is a trait, which is sort of like an abstract class in Java. There exists exactly one instance of Null, and that is null. The literal null serves the same purpose as it does in Java. It is the value of a reference that is not referring to any object. So if you write a method that takes a parameter of type Null, you can only pass in two things: null itself or a reference of type Null. </p>
+<p>Null is - together with scala.Nothing - at the bottom of the Scala type hierarchy.</p>
+<p>Null is a subtype of all reference types; its only instance is the null reference. Since Null is not a subtype of value types, null is not a member of any such type. For instance, it is not possible to assign null to a variable of type scala.Int.</p>
+<pre><code class="lang-scala"><span class="hljs-class"><span class="hljs-keyword">object</span> <span class="hljs-title">Test</span> {</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>(</span>args: <span class="hljs-type">Array</span>[<span class="hljs-type">String</span>]) {
+    testNull(<span class="hljs-literal">null</span>);
+    <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">str</span>:</span> <span class="hljs-type">String</span> = <span class="hljs-literal">null</span>;
+    <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">intReference</span>:</span> <span class="hljs-type">Int</span> = <span class="hljs-literal">null</span>; <span class="hljs-comment">// Compile time error</span>
+    <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">nullReference</span>:</span> <span class="hljs-type">Null</span> = <span class="hljs-literal">null</span>
+    testNull(nullReference);
+    testNull(str);  <span class="hljs-comment">// Compile time error</span>
+    testNull(<span class="hljs-string">"Hello"</span>);  <span class="hljs-comment">// Compile time error</span>
+  }
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">testNull</span>(</span>x: <span class="hljs-type">Null</span>) {
+    println(<span class="hljs-string">"Null Test"</span>)
+  }
+}
+</code></pre>
+
       </section>
     </div>
 
