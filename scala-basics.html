@@ -260,6 +260,48 @@ lean towards using an abstract class.</li>
   }
 }
 </code></pre>
+
+<h1 id="none">None</h1>
+<hr>
+<p>When you’re writing a function in Java and run into a situation where you don’t have a useful value to return, what do you do? There are a few ways to handle it. You could return null, but this causes problems. If the caller isn’t expecting to get a null, he could be faced with a NullPointerException when he tries to use it, or else the caller must check for null. Some functions will definitely never return null, but some may. As a caller, you don’t know. There is a way to declare in the function signature that you might not be able to return a good value, the throws keyword. <strong>But there is a cost associated with try/catch blocks, and you usually want to reserve the use of exceptions for truly exceptional situations, not just to signify an ordinary no-result situation</strong>.</p>
+<p>Scala has a built-in solution to this problem. If you want to return a String, for example, but you know that you may not be able to return a sensible value you can return an Option[String]. <strong>None is object that signifies no result from the method</strong>.</p>
+<pre><code class="lang-scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScalaNoneClass</span>(</span><span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">id</span>:</span> <span class="hljs-type">Int</span>) {
+
+}
+
+<span class="hljs-class"><span class="hljs-keyword">object</span> <span class="hljs-title">ScalaNone</span> {</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>(</span>args: <span class="hljs-type">Array</span>[<span class="hljs-type">String</span>]) {
+    <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">obj</span> =</span> <span class="hljs-keyword">new</span> <span class="hljs-type">ScalaNoneClass</span>(<span class="hljs-number">1</span>)
+    <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">anotherObj</span> =</span> <span class="hljs-keyword">new</span> <span class="hljs-type">ScalaNoneClass</span>(<span class="hljs-number">0</span>)
+    println(printString(getAnswer(obj)))
+    println(printString(getAnswer(anotherObj)))
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getAnswer</span>(</span>x: <span class="hljs-type">ScalaNoneClass</span>): <span class="hljs-type">Option</span>[<span class="hljs-type">String</span>] = {
+    <span class="hljs-keyword">if</span> (x.id &gt; <span class="hljs-number">0</span>) <span class="hljs-type">Some</span>(<span class="hljs-string">"Hello"</span>)
+    <span class="hljs-keyword">else</span> <span class="hljs-type">None</span>
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">printString</span>(</span>option: <span class="hljs-type">Option</span>[<span class="hljs-type">String</span>]): <span class="hljs-type">String</span> = option <span class="hljs-keyword">match</span> {
+    <span class="hljs-keyword">case</span> <span class="hljs-type">Some</span>(option) =&gt; option
+    <span class="hljs-keyword">case</span> <span class="hljs-type">None</span> =&gt; <span class="hljs-string">"No Answer"</span>
+  }
+
+  <span class="hljs-comment">// As for class and case class, it's already defined and no duplicate methods allowed</span>
+  <span class="hljs-comment">/*  def apply(x: Int) {
+    println("Apply called : " + x)
+  }
+
+  def unapply(x: Int) {
+    println("Unapply called : " + x)
+  }*/</span>
+}
+</code></pre>
+
+
+
+
+
       </section>
     </div>
 
