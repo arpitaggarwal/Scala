@@ -309,7 +309,28 @@ lean towards using an abstract class.</li>
 </code></pre>
 
 
-
+<h1 id="functions">Functions</h1>
+<p><strong>def</strong> defines a method in Scala.</p>
+<pre><code class="lang-scala"><span class="hljs-class"><span class="hljs-keyword">object</span> <span class="hljs-title">ScalaFunctions</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">App</span> {</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello</span>(</span>): <span class="hljs-type">String</span> = {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"hello"</span>
+  }
+}
+</code></pre>
+<h1 id="values">Values</h1>
+<p><strong>val</strong> defines a fixed value (which cannot be modified) in Scala.</p>
+<pre><code class="lang-scala"><span class="hljs-class"><span class="hljs-keyword">object</span> <span class="hljs-title">ScalaVariables</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">App</span> {</span>
+  <span class="hljs-function"><span class="hljs-keyword">val</span> <span class="hljs-title">variable</span>:</span> <span class="hljs-type">Int</span> = <span class="hljs-number">10</span>;
+  variable = <span class="hljs-number">20</span>; <span class="hljs-comment">//Compile Error</span>
+}
+</code></pre>
+<h1 id="variables">Variables</h1>
+<p><strong>var</strong> defines a variable (which can be modified) in Scala.</p>
+<pre><code class="lang-scala"><span class="hljs-class"><span class="hljs-keyword">object</span> <span class="hljs-title">ScalaValues</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">App</span> {</span>
+  <span class="hljs-keyword">var</span> variable: <span class="hljs-type">Int</span> = <span class="hljs-number">10</span>;
+  variable = <span class="hljs-number">20</span>; 
+}
+</code></pre>
 
 
       </section>
